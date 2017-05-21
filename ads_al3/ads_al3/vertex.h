@@ -10,6 +10,6 @@ public:
 	Vertex();
 	~Vertex();
 	std::vector<Edge*> con;
-
+	bool cross;
 };
 

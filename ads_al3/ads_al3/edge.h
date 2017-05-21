@@ -4,6 +4,8 @@
 struct Edge
 {
 	double dist;	// distance
-	Vertex* v;
+	int linienId;
+	Vertex* a;
+	Vertex* b;
 };
 

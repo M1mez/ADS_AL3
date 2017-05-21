@@ -1,11 +1,18 @@
 #include <iostream>
 #include <map>
+#include "vertex.h"
 
 using namespace std;
 
 int main()
 {
-	std::map <std::string, > fighterList;
+	string input;
+
+	map< string, Vertex* > stations;
+
+	stations[input] = new Vertex();
+
+	//vector< map<int name, Vertex*> > linien;
 
 
 	return 0;

@@ -1,12 +1,9 @@
-#include <vector>
-
-
 #pragma once
-class station
+#include "vertex.h"
+
+struct station
 {
-public:
-	station();
-	~station();
-	vector<station*> 
+	Vertex* a;
+	Vertex* b;
 };
 

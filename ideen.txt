@@ -1,4 +1,4 @@
-SuchAlgrithmus:
+﻿SuchAlgrithmus:
 
 Brute Force(Threading):
 	Man geht jeden Weg, der von der Startstation möglich ist entlang. Erreicht eine der Suchen das Ziel, wird der Zeitaufwand gespeichert und als Vergleichswert herangenommen. Jede Suche, die bereits eine längere Reisezeit besitzt, wird gelöscht. Erreicht eine Suche in einer kürzeren Zeit das Ziel, stellt diese den neuen Vergleichswert. Man wartet, bis keine Suche mehr läuft und hat somit die schnellste Route gefunden.
@@ -14,7 +14,20 @@ Sackgassen:
 	Kreuzt keiner der Folgeknoten eine andere Linie, dann läuft man in eine Sackgasse, und kann den Weg ignorieren, falls die Zielstation nicht auf der aktuellen Linie liegt.
 
 Suchen kreuzen sich auf Knoten:
-	Jede Suche hat eine ID. In jedem Knoten wird in einem Vector(ID äquivalent zu Index), gepseichert, wie lang die Suche bis zu diesem Punkt gebraucht hat. Ist man schneller gewesen, wird die alte Suche gelöscht, hat man länger gebraucht, löscht man die aktuelle Suche. Nur die Suche, die den schnellsten Weg zu einem Knoten besitzt, wird weitergeführt.
+	Jede Suche hat eine ID. In jedem Knoten wird in einem Vector(ID äquivalent zu Index) gespeichert, wie lang die Suche bis zu diesem Punkt gebraucht hat. Ist man schneller gewesen, wird die alte Suche gelöscht, hat man länger gebraucht, löscht man die aktuelle Suche. Nur die Suche, die den schnellsten Weg zu einem Knoten besitzt, wird weitergeführt.
 
 Threading:
 	Überlegung die Threads zu begrenzen(8?) und immer zu ersetzen, wenn einer der aktuellen Threads verworfen wird.
+
+
+
+Öffi-Netze:
+
+Karten-Aufbau:
+	Eine Hash-Map pro Linie mit Namen und Vertex*(Pointer auf einen Punkt, eine Station), also Map<string name, Vertex*>.
+
+Kreuzung:
+	Wenn eine Kreuzung besteht, wird ein bool "cross" auf dem Vertex true gesetzt, somit weiß man, dass noch andere Linien diese Station anfahren.
+	In diesem Fall wird in der Hash-Map derselbe Pointer wie in der anderen Linie gesetzt. wenn die Wegzeit berechnet wird, passiert "if (cross) wegzeit += 5;"
+	
+	

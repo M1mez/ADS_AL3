@@ -7,9 +7,10 @@
 class Vertex
 {
 public:
-	Vertex();
+	Vertex(std::string name);
 	~Vertex();
 	std::vector<Edge*> con;
 	bool cross;
+	std::string m_name;
 };
 

@@ -112,10 +112,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="edge.h" />
+    <ClInclude Include="manager.h" />
     <ClInclude Include="station.h" />
     <ClInclude Include="vertex.h" />
   </ItemGroup>

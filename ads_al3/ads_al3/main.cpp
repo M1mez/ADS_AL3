@@ -8,12 +8,13 @@ int main()
 {
 	string input;
 
-	map< string, Vertex* > stations;
 
-	stations[input] = new Vertex();
+	//map < string /*station*/, map < int /*linie*/, Vertex*> > stations;
+	//stations[name][2]								//	-> 2D HashMap LAWL!!!
 
-	//vector< map<int name, Vertex*> > linien;
 
+
+	
 
 	return 0;
 }

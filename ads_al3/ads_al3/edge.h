@@ -1,5 +1,7 @@
 #pragma once
 #include "vertex.h"
+#include <iostream>
+#include <string>
 
 struct Edge
 {

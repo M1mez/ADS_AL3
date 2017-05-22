@@ -2,7 +2,7 @@
 #include <vector>
 #include "edge.h"
 
-
+struct Edge;
 
 class Vertex
 {

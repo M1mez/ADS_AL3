@@ -30,4 +30,7 @@ Kreuzung:
 	Wenn eine Kreuzung besteht, wird ein bool "cross" auf dem Vertex true gesetzt, somit weiß man, dass noch andere Linien diese Station anfahren.
 	In diesem Fall wird in der Hash-Map derselbe Pointer wie in der anderen Linie gesetzt. wenn die Wegzeit berechnet wird, passiert "if (cross) wegzeit += 5;"
 	
+wenn name nochmal als index verwendet werden will, gibt map fehler?
+einlesen der einzelnen stationen in die hashmap und während dem einlesen check ob schon vorhanden, wenn nicht vertex erzeugen un mit dem vorherigen vertex eine edge erzeugen.
+wenn schon, wird im vorhandenen vertex bool cross auf true gesetzt.
 	

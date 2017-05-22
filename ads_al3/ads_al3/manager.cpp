@@ -37,11 +37,11 @@ void Manager::readFile()
 
 		if (m_stations.count(station))
 		{
-			m_stations[name]->cross = true;
+			m_stations[station]->cross = true;
 		}
 		else
 		{
-			m_stations[name] = prevV = new Vertex(name);
+			m_stations[station] = prevV = new Vertex(station);
 		}
 
 		int dist = 0;
@@ -54,14 +54,17 @@ void Manager::readFile()
 
 			getline(ss, station, '"'); // name der station
 
+
 			if (m_stations.count(station))
 			{
 				m_stations[station]->cross = true;
 			}
 			else
 			{
-				m_stations[station] = currentV = new Vertex(name);
+				m_stations[station] = currentV = new Vertex(station);
 			}
+
+			if (ss.eof()) break;
 
 			edge = new Edge();
 			edge->a = prevV;
@@ -84,15 +87,22 @@ void Manager::testOut()
 {
 	Edge* curE;
 	Vertex* curV = m_stations["Leopoldau"];
-		system("pause");
 	curE = curV->con[0];
+	cout << endl;
+
 	while (curE)
 	{
 		cout << curV->m_name << " -> ";
 
-		//curE = curV->con.at(1);
-		if (curE) curV = curE->b;
+		
+		curV = curE->b;
+
+		curE = (curV->con.size() == 2) ? curV->con[1] : nullptr;
+
 	}
+	cout << curV->m_name;
+
+		system("pause");
 
 }
 

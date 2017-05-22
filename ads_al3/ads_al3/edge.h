@@ -10,7 +10,7 @@ struct Edge
 {
 	int dist;	// distance
 	int linienId;
-	Vertex* a;
-	Vertex* b;
+	Vertex* a = nullptr;
+	Vertex* b = nullptr;
 };
 

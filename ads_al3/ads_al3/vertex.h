@@ -16,5 +16,7 @@ public:
 
 	std::string m_stationName;
 	std::string m_lineName;
+
+	Edge* findNextE(Vertex* prevV, int line);
 };
 

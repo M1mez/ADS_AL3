@@ -4,22 +4,20 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
-	string input;
-
+	string startStation, endStation;
 	Manager man;
 
-	man.readFile();
+	if (argc > 1)
+	{
+		startStation = argv[1];
+		endStation = argv[2];
+		cout << endl << "From " << startStation << " to " << endStation << ":" << endl << endl;
+	}
+	else man.testOut(0);
 
-	man.testOut();
 
-
-
-	//map < string /*station*/, map < int /*linie*/, Vertex*> > stations;
-	//stations[name][2]								//	-> 2D HashMap LAWL!!!
-
-	
 
 	system("pause");
 

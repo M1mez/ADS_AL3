@@ -32,9 +32,6 @@
     <ClInclude Include="edge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="station.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

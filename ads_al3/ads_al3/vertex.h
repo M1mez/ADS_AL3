@@ -9,8 +9,12 @@ class Vertex
 public:
 	Vertex(std::string name);
 	~Vertex();
-	std::vector<Edge*> con;
-	bool cross;
-	std::string m_name;
+
+	std::vector<Edge*> m_edges;
+	bool m_crossing;
+	bool m_isEndStation;
+
+	std::string m_stationName;
+	std::string m_lineName;
 };
 

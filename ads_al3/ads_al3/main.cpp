@@ -16,13 +16,12 @@ int main()
 
 
 
-
 	//map < string /*station*/, map < int /*linie*/, Vertex*> > stations;
 	//stations[name][2]								//	-> 2D HashMap LAWL!!!
 
 	
 
-	cin.get();
+	system("pause");
 
 	return 0;
 }
@@ -33,7 +32,7 @@ Sebi:
 
 
 Johannes:
-
+	~8h
 
 
 

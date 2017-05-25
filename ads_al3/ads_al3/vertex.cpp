@@ -2,10 +2,10 @@
 
 using namespace std;
 
-Vertex::Vertex(string name) : m_name(name)
+Vertex::Vertex(string name) : m_stationName(name)
 {
-	cross = false;
-	
+	m_crossing = false;
+	m_lineName = "";
 }
 
 

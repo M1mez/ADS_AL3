@@ -2,11 +2,11 @@
 
 
 
-edge::edge()
+Edge::Edge()
 {
 }
 
 
-edge::~edge()
+Edge::~Edge()
 {
 }

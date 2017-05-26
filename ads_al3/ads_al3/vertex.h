@@ -9,8 +9,8 @@ struct Edge;
 class Vertex
 {
 public:
-	Vertex(std::string name);
-	~Vertex();
+	Vertex (std::string name);
+	~Vertex ();
 
 	std::vector<Edge*> m_edges;
 	bool m_crossing;

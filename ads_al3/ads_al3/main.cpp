@@ -10,12 +10,18 @@ int main (int argc, char *argv[])
 {
 	string startStation, endStation;
 	Manager man;
+	if (argc > 1)
+	{
+		cout << endl << "Starting ADS_AL3..." << endl;
+		//check command line parameters.
+		if (!validate(argc, argv)) return 0;
 
-	cout << endl << "Starting ADS_AL3..." << endl;
-	//check command line parameters.
-	if(!validate (argc, argv)) return 0;
-
-	cout << "Building Network, this may take a moment..." << endl;
+		cout << "Building Network, this may take a moment..." << endl;
+	}
+	else
+	{
+		man.testOut(1);
+	}
 	//Datenstruktur bauen
 
 	//User Eingabe abfragen
@@ -30,8 +36,6 @@ int main (int argc, char *argv[])
 	else man.testOut(0);
 
 
-
-	system("pause");
 
 */
 	cout << endl;

@@ -1,7 +1,9 @@
 #pragma once
+#include <string>
 
-//checks commandline parameters
-void validate(int &argc, char* &argv);
+//checks commandline parameters. Returns 0 in case of error.
+int validate (int &argc, char** argv);
 
-//checks existance of File
-bool fexists(const std::string& filename);
+bool fexists (const std::string& filename);
+
+void printHelp ();

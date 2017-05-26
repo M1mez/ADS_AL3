@@ -6,16 +6,16 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main (int argc, char *argv[])
 {
 	string startStation, endStation;
 	Manager man;
 
+	cout << endl << "Starting ADS_AL3..." << endl;
 	//check command line parameters.
-	validate(argc, argv[0]);
+	if(!validate (argc, argv)) return 0;
 
-	//Parameter validieren
-
+	cout << "Building Network, this may take a moment..." << endl;
 	//Datenstruktur bauen
 
 	//User Eingabe abfragen
@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
 	system("pause");
 
 */
+	cout << endl;
 	return 0;
 }
 /*

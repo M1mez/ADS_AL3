@@ -18,7 +18,7 @@ public:
 	Edge* previous;
 	int pathLength;
 
-	//int findBest(Vertex* dest);
+	int findBest(Vertex* dest);
 	
 	std::string m_stationName;
 	std::string m_lineList;

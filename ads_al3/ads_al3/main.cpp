@@ -9,21 +9,16 @@ using namespace std;
 int main (int argc, char *argv[])
 {
 	string startStation, endStation;
-	Manager man;
-	if (argc > 1)
-	{
+
 		cout << endl << "Starting ADS_AL3..." << endl;
 		//check command line parameters.
 		if (!validate(argc, argv)) return 0;
 
 		cout << "Building Network, this may take a moment..." << endl;
-	}
-	else
-	{
-		man.testOut(1);
-	}
-	//Datenstruktur bauen
+	
 
+	Manager man;
+	man.testOut(1);
 	//User Eingabe abfragen
 
 /*
@@ -45,10 +40,10 @@ int main (int argc, char *argv[])
 Stunden:
 
 Sebi:
-start 20:30h
+	4,5h
 
 Johannes:
-	~8h
+	10,5h
 
 
 

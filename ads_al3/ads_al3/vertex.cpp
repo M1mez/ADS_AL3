@@ -13,23 +13,23 @@ Vertex::~Vertex()
 {
 }
 
-//int Vertex::findBest(Vertex* dest)
-//{
-//	int best = INT_MAX;
-//	int nextInt;
-//
-//	if ()
-//
-//	for (auto e : m_edges)
-//	{
-//		nextInt = e->m_target->findBest(dest);
-//		best = best < nextInt ? best : nextInt;
-//	}
-//
-//
-//
-//	return best;
-//}
+int Vertex::findBest(Vertex* dest)
+{
+	int best = INT_MAX;
+	int nextInt;
+
+	if ()
+
+	for (auto e : m_edges)
+	{
+		nextInt = e->m_target->findBest(dest);
+		best = best < nextInt ? best : nextInt;
+	}
+
+
+
+	return best;
+}
 
 Edge* Vertex::findNextE(Vertex* prevV, int line)
 {

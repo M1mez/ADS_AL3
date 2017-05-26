@@ -1,2 +1,2 @@
 all:
-	g++ *.cpp -o Vorlesung1 -std=c++11 -static
+	g++ *.cpp -o startmeLinux -std=c++11 -static

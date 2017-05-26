@@ -5,13 +5,31 @@ using namespace std;
 Vertex::Vertex(string name) : m_stationName(name)
 {
 	m_crossing = false;
-	m_lineName = "";
+	m_lineList = "";
 }
 
 
 Vertex::~Vertex()
 {
 }
+
+//int Vertex::findBest(Vertex* dest)
+//{
+//	int best = INT_MAX;
+//	int nextInt;
+//
+//	if ()
+//
+//	for (auto e : m_edges)
+//	{
+//		nextInt = e->m_target->findBest(dest);
+//		best = best < nextInt ? best : nextInt;
+//	}
+//
+//
+//
+//	return best;
+//}
 
 Edge* Vertex::findNextE(Vertex* prevV, int line)
 {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <map>
 #include "manager.h"
 
 using namespace std;
@@ -15,11 +14,10 @@ int main(int argc, char *argv[])
 		endStation = argv[2];
 		cout << endl << "From " << startStation << " to " << endStation << ":" << endl << endl;
 	}
-	else man.testOut(0);
+	//else man.testOut(0);
 
 
-
-	system("pause");
+	cin.get();
 
 	return 0;
 }
@@ -30,7 +28,6 @@ Sebi:
 
 
 Johannes:
-	~8h
 
 
 

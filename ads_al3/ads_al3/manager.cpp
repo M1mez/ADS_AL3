@@ -8,10 +8,12 @@ using namespace std;
 Manager::Manager()
 {
 	readFile();
+	alg = new Algorithm(this);
 }
 
 Manager::~Manager()
 {
+	delete alg;
 }
 
 
@@ -40,8 +42,8 @@ void Manager::readFile()
 
 		prevV = newStation(station);
 
-		if (prevV->m_crossing) prevV->m_lineName += " ";
-		prevV->m_lineName += name;
+		if (prevV->m_crossing) prevV->m_lineList += " ";
+		prevV->m_lineList += name;
 #pragma endregion 
 		
 		m_startStations.push_back(prevV);
@@ -58,8 +60,8 @@ void Manager::readFile()
 
 			currV = newStation(station);
 
-			if (currV->m_crossing) currV->m_lineName += " ";
-			currV->m_lineName += name;
+			if (currV->m_crossing) currV->m_lineList += " ";
+			currV->m_lineList += name;
 #pragma endregion 
 
 #pragma region create new edge on previous vertex

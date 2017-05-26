@@ -15,9 +15,13 @@ public:
 	std::vector<Edge*> m_edges;
 	bool m_crossing;
 	bool m_isEndStation;
+	Edge* previous;
+	int pathLength;
 
+	//int findBest(Vertex* dest);
+	
 	std::string m_stationName;
-	std::string m_lineName;
+	std::string m_lineList;
 
 	Edge* findNextE(Vertex* prevV, int line);
 };

@@ -7,7 +7,6 @@ using namespace std;
 
 Manager::Manager()
 {
-	readFile();
 	alg = new Algorithm(this);
 }
 
@@ -16,6 +15,24 @@ Manager::~Manager()
 	delete alg;
 }
 
+//TO DO: secure input and validate station names.
+void Manager::getQuery (std::string &start, std::string &end)
+{
+	cout << "Please enter your search query!" << endl;
+	cout << "+-----------------------------+" << endl << endl;
+	cout << "Origin station: ";
+	cin  >> start;
+	cout << endl << "Destination station: ";
+	cin >> end;
+	cout << endl;
+}
+
+void Manager::findRoute (std::string &start, std::string &end)
+{
+	alg->addQuery (m_stations[start], m_stations[end]);
+	alg->runQuery ();
+
+}
 
 void Manager::readFile()
 {

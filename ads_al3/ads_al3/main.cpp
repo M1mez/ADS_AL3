@@ -8,19 +8,28 @@ using namespace std;
 
 int main (int argc, char *argv[])
 {
+	cout << endl << "Starting ADS_AL3..." << endl;
+
 	string startStation, endStation;
-
-		cout << endl << "Starting ADS_AL3..." << endl;
-		//check command line parameters.
-		if (!validate(argc, argv)) return 0;
-
-		cout << "Building Network, this may take a moment..." << endl;
-	
-
 	Manager man;
-	man.testOut(1);
-	//User Eingabe abfragen
+	
+	//check command line parameters.
+	if (!validate (argc, argv)) return 0;
 
+	cout << "Building Network, this may take a moment..." << endl;
+
+	//Build Data Structures
+	man.readFile();
+	cout << "Success!" << endl << endl;
+
+
+	man.testOut(1);
+
+	//Get Query from User
+	man.getQuery (startStation, endStation);
+
+	//Find route
+	man.findRoute (startStation, endStation);
 /*
 	if (argc > 1)
 	{
@@ -40,7 +49,7 @@ int main (int argc, char *argv[])
 Stunden:
 
 Sebi:
-	4,5h
+	7,5h
 
 Johannes:
 	10,5h

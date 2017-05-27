@@ -12,7 +12,7 @@ struct Edge
 	~Edge();
 
 	int m_distance;	// distance
-	int m_lineId;
+	int m_lineId;		//ID of the line this edge belongs to
 
 	Vertex* m_target = nullptr;
 };

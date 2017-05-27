@@ -18,8 +18,6 @@ int Vertex::findBest(Vertex* dest)
 	int best = INT_MAX;
 	int nextInt;
 
-	if ()
-
 	for (auto e : m_edges)
 	{
 		nextInt = e->m_target->findBest(dest);
@@ -44,4 +42,27 @@ Edge* Vertex::findNextE(Vertex* prevV, int line)
 		}
 	}
 	return nextE;
+}
+
+
+//NEEDS TO BE TESTED
+std::vector <Vertex*> getNeighbours ()
+{
+	bool vertexIsNew = true;
+	std::vector <Vertex*> neighbours;
+	Vertex* tempVertex = new Vertex ();
+
+	for (auto tempE : m_edges)
+	{
+		tempVertex = tempE->m_target;
+
+		for (auto tempV : neighbours)
+		{
+			if(tempVertex == tempV) vertexIsNew = false;
+		}
+
+		vertexIsNew ? neighbours.push_back (tempVertex) : vertexIsNew = true;
+	}
+
+	return neighbours;
 }

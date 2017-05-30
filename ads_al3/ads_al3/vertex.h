@@ -24,8 +24,8 @@ public:
 
 	//used in algorithm.h
 	Edge* previous;
-	int pathLength;
-	bool isGoal;
+	int 	pathLength;
+	bool	isGoal;
 
 	int findBest(Vertex* dest);
 	
@@ -34,6 +34,8 @@ public:
 	//who use this station (printed as info/formatting  only)
 	std::string m_stationName;
 	std::string m_lineList;
+
+	void changePrevious (Vertex* previousStation);
 
 	Edge* findNextE(Vertex* prevV, int line);
 	//returns all Stations connected to this station.

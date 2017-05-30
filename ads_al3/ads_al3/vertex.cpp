@@ -45,6 +45,14 @@ Edge* Vertex::findNextE(Vertex* prevV, int line)
 }
 
 
+void Vertex::changePrevious (Vertex* previousStation);
+{
+	for (auto iterEdge : m_edges)
+	{
+		if(iterEdge->target == previousStation) this->previous = iterEdge;
+	}
+}
+
 //NEEDS TO BE TESTED
 std::vector <Vertex*> getNeighbours ()
 {

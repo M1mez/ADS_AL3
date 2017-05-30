@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <forward_list>
+#include <list>
 #include "manager.h"
 #include "vertex.h"
 
@@ -17,18 +17,24 @@ private:
 	Vertex* destination;
 
 	//Query structures
-	std::vector       <Vertex*> visitedStations;
-	std::forward_list <Vertex*> queue;
+	std::vector       <Vertex* > visitedStations;
+	std::list <Vertex* > queue
 
 	//sets distance to infinity in all stations.
 	void initialize ();
+
+	void checkPathLength (Vertex* vertexToCheck, int newDistance);
+
+	std::vector <Vector* > finish (Vertex* reachedGoal);
+	void addToQueue (Vertex* addMeToQueue);
 public:
 
 	Algorithm  (Manager *man);
 	~Algorithm();
 
 	void addQuery (Vertex* orig, Vertex* dest);
-	void runQuery();
+	//runs Query and returns route.
+	std::vector <Vector* > runQuery();
 
 };
 

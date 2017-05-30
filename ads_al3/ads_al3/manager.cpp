@@ -29,8 +29,9 @@ void Manager::getQuery (std::string &start, std::string &end)
 
 void Manager::findRoute (std::string &start, std::string &end)
 {
+	std::vector <Vertex* > route;
 	alg->addQuery (m_stations[start], m_stations[end]);
-	alg->runQuery ();
+	route = alg->runQuery ();
 
 }
 

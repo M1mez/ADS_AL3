@@ -17,10 +17,10 @@ struct Edge
 	Vertex* m_target = nullptr;
 
 	//return Distance, considering 5 minutes to switch lines
-	int getDistance (currLineId)
+	int getDistance (int currLineId)
 	{	
-		if (currLineId == nullptr || currLineId = m_lineId) return m_distance;
-		else																								return (m_distance + 5);
+		if (currLineId == -1 || currLineId == m_lineId) return m_distance;
+		else  return (m_distance + 5);
 	}
 };
 

@@ -26,7 +26,7 @@ int main (int argc, char *argv[])
 	man.testOut(1);
 
 	//Get Query from User
-	man.getQuery (startStation, endStation);
+	man.getQuery (startStation, endStation);	// @sebi schöne lösung mit referenzen #notbad
 
 	//Find route
 	man.findRoute (startStation, endStation);

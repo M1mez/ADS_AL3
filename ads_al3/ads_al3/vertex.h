@@ -4,7 +4,7 @@
 #include <string>
 #include "edge.h"
 
-#define INT_MAX 100
+//#define INT_MAX 100 ist schon ein Makro, eben max von INT
 
 struct Edge;
 
@@ -35,10 +35,8 @@ public:
 	std::string m_stationName;
 	std::string m_lineList;
 
-	void changePrevious (Vertex* previousStation);
+	void changePrevious (Edge* previousEdge);
 
 	Edge* findNextE(Vertex* prevV, int line);
-	//returns all Stations connected to this station.
-	std::vector <Vertex*> getNeighbours ();
 };
 

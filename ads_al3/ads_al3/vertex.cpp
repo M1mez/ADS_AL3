@@ -6,6 +6,9 @@ Vertex::Vertex(string name) : m_stationName(name)
 {
 	m_crossing = false;
 	m_lineList = "";
+	pathLength = INT_MAX;
+	previous = nullptr;
+	isGoal = false;
 }
 
 
@@ -44,33 +47,11 @@ Edge* Vertex::findNextE(Vertex* prevV, int line)
 	return nextE;
 }
 
-
-void Vertex::changePrevious (Vertex* previousStation);
+void Vertex::changePrevious(Edge* previousEdge)
 {
-	for (auto iterEdge : m_edges)
+	this->previous = previousEdge;
+	/*for (auto iterEdge : m_edges)
 	{
-		if(iterEdge->target == previousStation) this->previous = iterEdge;
-	}
-}
-
-//NEEDS TO BE TESTED
-std::vector <Vertex*> getNeighbours ()
-{
-	bool vertexIsNew = true;
-	std::vector <Vertex*> neighbours;
-	Vertex* tempVertex = new Vertex ();
-
-	for (auto tempE : m_edges)
-	{
-		tempVertex = tempE->m_target;
-
-		for (auto tempV : neighbours)
-		{
-			if(tempVertex == tempV) vertexIsNew = false;
-		}
-
-		vertexIsNew ? neighbours.push_back (tempVertex) : vertexIsNew = true;
-	}
-
-	return neighbours;
+		if(iterEdge == previousEdge) this->previous = iterEdge;
+	}*/
 }

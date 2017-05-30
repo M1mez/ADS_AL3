@@ -17,15 +17,15 @@ private:
 	Vertex* destination;
 
 	//Query structures
-	std::vector       <Vertex* > visitedStations;
-	std::list <Vertex* > queue
+	std::vector <Vertex* > visitedStations;
+	std::list <Vertex* > queue;
 
 	//sets distance to infinity in all stations.
-	void initialize ();
+	// void initialize ();  // Hab ich in div. Methoden verteilt, war redundant
 
-	void checkPathLength (Vertex* vertexToCheck, int newDistance);
+	void checkPathLength(Edge* previousEdge, Vertex* vertexToCheck, int newDistance);
 
-	std::vector <Vector* > finish (Vertex* reachedGoal);
+	//std::vector <Vertex* > finish (Vertex* reachedGoal); // noch benötigt?
 	void addToQueue (Vertex* addMeToQueue);
 public:
 
@@ -34,7 +34,7 @@ public:
 
 	void addQuery (Vertex* orig, Vertex* dest);
 	//runs Query and returns route.
-	std::vector <Vector* > runQuery();
+	std::vector <Vertex* > runQuery();
 
 };
 

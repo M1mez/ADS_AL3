@@ -1,8 +1,8 @@
 #include "manager.h"
+#include "validation.h"
 #include <fstream>
 #include <sstream>
 
-#define INITSTRLENGTH 20
 using namespace std;
 
 Manager::Manager()
@@ -18,7 +18,6 @@ Manager::~Manager()
 //TO DO: secure input and validate station names.
 void Manager::getQuery (std::string &start, std::string &end)
 {
-	bool failInput = false;
 	do
 	{
 		cout << "Please enter your search query!" << endl;
@@ -28,7 +27,7 @@ void Manager::getQuery (std::string &start, std::string &end)
 		cout << endl << "Destination station: ";
 		cin >> end;
 		cout << endl;
-	} while (start == end);
+	} while (validateUserQuery(start, end));
 	
 }
 
@@ -36,8 +35,7 @@ void Manager::getQuery (std::string &start, std::string &end)
 void Manager::findRoute (std::string &start, std::string &end)
 {
 	std::vector <Edge* > route;
-	alg->addQuery (m_stations[start], m_stations[end]);
-	route = alg->runQuery ();
+	route = alg->runQuery (m_stations[start], m_stations[end]);
 
 	printRoute(route);
 	alg->reset();
@@ -120,18 +118,21 @@ void Manager::readFile()
 
 }
 
-void Manager::printRoute(vector<Edge*> &route)
+void Manager::printRoute(vector<Edge*> &route) const
 {
 	bool isAtStartStation = true;
 	int	 currLine = 0;
 
-	//Print start station
-	cout << route.front()->m_target->previous->m_target->m_stationName;
 	for (auto tempE : route)
 	{
+		//check if line needs to be changed at output message, if so.
 		if (isAtStartStation)
 		{
 			isAtStartStation = false;
+
+			//Print start station
+			cout << route.front()->m_target->previous->m_target->m_stationName;
+			cout << ". Take Line " << m_lineNames.at(tempE->m_lineId) << " ";
 		}
 		else
 		{
@@ -141,6 +142,7 @@ void Manager::printRoute(vector<Edge*> &route)
 				cout << tempE->m_target->previous->m_target->m_stationName;
 			}
 		}
+		//Output of next station on the route.
 		cout << " -> " << endl << tempE->m_target->m_stationName;
 		currLine = tempE->m_lineId;
 	}

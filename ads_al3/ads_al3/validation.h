@@ -7,3 +7,5 @@ int validate (int &argc, char** argv);
 bool fexists (const std::string& filename);
 
 void printHelp ();
+
+int validateUserQuery(std::string start, std::string end);

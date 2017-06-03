@@ -15,7 +15,7 @@ public:
 	Vertex (std::string name);
 	~Vertex ();
 
-	//Edges, connected to the Station
+	//All Edges, connected to the Station
 	std::vector<Edge*> m_edges;
 
 	//optimizations
@@ -27,17 +27,15 @@ public:
 	int 	pathLength;
 
 	
-	//Name of the station,
-	//and string containing all lines
-	//who use this station (printed as info/formatting  only)
+	//Name of the station
 	std::string m_stationName;
+
+	//String containing all lines
+	//who use this station (printed as info/formatting  only)
 	std::string m_lineList;
 
+	//Set 'Edge* previous' to Edge pointing at 'originVertex'.
 	void changePrevious (Vertex* originVertex);
-/*
-	int findBest(Vertex* dest);
-	Edge* findNextE(Vertex* prevV, int line);
-*/
 	
 };
 

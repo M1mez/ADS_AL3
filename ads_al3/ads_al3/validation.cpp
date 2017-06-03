@@ -41,3 +41,9 @@ void printHelp ()
 	std::cout << "<2> networkFile:" << std::endl;
 	std::cout << "Path of the file containing the Network data." << std::endl << std::endl;
 }
+
+int validateUserQuery(std::string start, std::string end)
+{
+
+	return 0;
+}

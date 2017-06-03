@@ -18,7 +18,7 @@ struct Edge
 	Vertex* m_target = nullptr;
 
 	//return Distance, considering 5 minutes to switch lines.
-	//Is -1 on starting Vertex->previous.
-	int getDistance (int currLineId);
+	//lineId is -1 on starting Vertex->previous.
+	int getDistance (int currLineId) const;
 };
 

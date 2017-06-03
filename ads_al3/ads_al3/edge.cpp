@@ -19,7 +19,7 @@ Edge::~Edge()
 }
 
 
-int Edge::getDistance (int currLineId)
+int Edge::getDistance (int currLineId) const
 {	
 	if (currLineId == -1 || currLineId == m_lineId) return m_distance;
 	else  return (m_distance + 5);

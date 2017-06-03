@@ -6,6 +6,8 @@
 #include <string>
 #include <map>
 
+#define INITSTRLENGTH 20
+
 class Algorithm;
 
 class Manager
@@ -36,7 +38,7 @@ public:
 	//parse input file to Datastructure
 	void readFile ();
 
-	void printRoute (std::vector<Edge*> &route);
+	void printRoute (std::vector<Edge*> &route) const;
 
 	//get query from user
 	void getQuery (std::string &start, std::string &end);

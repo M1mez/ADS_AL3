@@ -10,43 +10,41 @@ using namespace std;
 Algorithm::Algorithm (Manager *man) : manager(man){}
 Algorithm::~Algorithm  (){}
 
-void Algorithm::addQuery (Vertex* orig, Vertex* dest)
+void Algorithm::initializeQuery (Vertex* orig, Vertex* dest)
 {
 	origin      = orig;
 	destination = dest;
 
 	origin->pathLength = 0;
-	//set previous to -1
+	//set dummy previous, to recognize starting station
 	origin->previous = new Edge (0, -1, nullptr);
 	queue.push_front(origin);
 }
 
-//TO DO: FINISH THIS. Problem: Distance needs to be rechecked in every node, bc of line switch? Thread?
-std::vector <Edge* > Algorithm::runQuery ()
+std::vector <Edge* > Algorithm::runQuery (Vertex* orig, Vertex* dest)
 {
-	std::vector <Edge* > shortestPath;
+	//initialize the query.
+	this->initializeQuery (orig, dest);
+
+	//Station currently inspected for connections
 	Vertex* currInspected;
 
 	while(queue.front() != this->destination)
 	{
 		//select currently shortest path to be inspected, return route, if Goal is reached.
 		currInspected = queue.front();
-	//	if (find(visitedStations.begin(), visitedStations.end(), currInspected) != visitedStations.end())
+	
 		//look at all connections, check if Path is shorter and change Vertex distance and previous, if so.
 		for (auto i : currInspected->m_edges)
 		{
-
 			checkPathLength (currInspected, i->m_target, i->getDistance(currInspected->previous->m_lineId)+currInspected->pathLength);
-			//cout << i->m_target->m_stationName << "INDI" << endl;
 		}
 
+		//Remember stations already checked and remove them from the queue.
 		visitedStations.push_back(queue.front());
-
 		queue.pop_front();
 
 	}
-
-	cout << "succesfully ran a query. kappa." << endl;
 	return finish (queue.front());
 }
 
@@ -57,7 +55,6 @@ void Algorithm::reset ()
 		i->second->pathLength = INT_MAX;
 		i->second->previous = nullptr;
 	}
-
 }
 
 void Algorithm::checkPathLength(Vertex* originVertex, Vertex* vertexToCheck, int newDistance)
@@ -70,8 +67,7 @@ void Algorithm::checkPathLength(Vertex* originVertex, Vertex* vertexToCheck, int
 	}
 }
 
-//TODO: finish this, care for order of stations.
-std::vector <Edge* > Algorithm::finish (Vertex* reachedGoal)
+std::vector <Edge* > Algorithm::finish (Vertex* reachedGoal) const
 {
 	vector <Edge* > route;
 	Edge* currE = reachedGoal->previous;
@@ -125,7 +121,7 @@ void Algorithm::addToQueue (Vertex* addMeToQueue)
 
 }
 
-Edge* Algorithm::turnPrevious(Vertex* originVertex)
+Edge* Algorithm::turnPrevious(Vertex* originVertex) const
 {
 	Vertex* target = originVertex->previous->m_target;
 	for (auto iterEdge : target->m_edges)

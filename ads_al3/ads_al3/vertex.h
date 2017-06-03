@@ -25,9 +25,7 @@ public:
 	//used in algorithm.h
 	Edge* previous;
 	int 	pathLength;
-	bool	isGoal;
 
-	int findBest(Vertex* dest);
 	
 	//Name of the station,
 	//and string containing all lines
@@ -36,7 +34,10 @@ public:
 	std::string m_lineList;
 
 	void changePrevious (Edge* previousEdge);
-
+/*
+	int findBest(Vertex* dest);
 	Edge* findNextE(Vertex* prevV, int line);
+*/
+	
 };
 

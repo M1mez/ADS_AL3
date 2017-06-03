@@ -21,11 +21,11 @@ private:
 	std::list <Vertex* > queue;
 
 	//sets distance to infinity in all stations.
-	// void initialize ();  // Hab ich in div. Methoden verteilt, war redundant
+	void reset (); // Hab ich in div. Methoden verteilt, war redundant
 
 	void checkPathLength(Edge* previousEdge, Vertex* vertexToCheck, int newDistance);
 
-	//std::vector <Vertex* > finish (Vertex* reachedGoal); // noch benötigt?
+	std::vector <Vertex* > finish (Vertex* reachedGoal); // noch benötigt?
 	void addToQueue (Vertex* addMeToQueue);
 public:
 

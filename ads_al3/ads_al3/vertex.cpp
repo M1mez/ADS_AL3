@@ -1,3 +1,4 @@
+#include <climits>
 #include "vertex.h"
 
 using namespace std;
@@ -8,7 +9,6 @@ Vertex::Vertex(string name) : m_stationName(name)
 	m_lineList = "";
 	pathLength = INT_MAX;
 	previous = nullptr;
-	isGoal = false;
 }
 
 
@@ -16,6 +16,21 @@ Vertex::~Vertex()
 {
 }
 
+void Vertex::changePrevious(Vertex* originVertex)
+{
+	for (auto iterEdge : m_edges)
+	{
+		if(iterEdge->m_target == originVertex)
+		{
+		 	this->previous = iterEdge;
+		 	return;
+		}
+	}
+	throw runtime_error("Error in Algorithm! Oneway connection between two stations?");
+}
+
+
+/*
 int Vertex::findBest(Vertex* dest)
 {
 	int best = INT_MAX;
@@ -46,12 +61,4 @@ Edge* Vertex::findNextE(Vertex* prevV, int line)
 	}
 	return nextE;
 }
-
-void Vertex::changePrevious(Edge* previousEdge)
-{
-	this->previous = previousEdge;
-	/*for (auto iterEdge : m_edges)
-	{
-		if(iterEdge == previousEdge) this->previous = iterEdge;
-	}*/
-}
+*/

@@ -29,7 +29,15 @@ int main (int argc, char *argv[])
 	man.getQuery (startStation, endStation);	// @sebi schöne lösung mit referenzen #notbad
 
 	//Find route
-	man.findRoute (startStation, endStation);
+	try
+	{
+		man.findRoute (startStation, endStation);
+	}
+	catch (exception &e)
+	{
+		cout << e.what() << endl;
+		return 0;
+	}
 /*
 	if (argc > 1)
 	{
@@ -45,15 +53,3 @@ int main (int argc, char *argv[])
 	cout << endl;
 	return 0;
 }
-/*
-Stunden:
-
-Sebi:
-	7,5h
-
-Johannes:
-	10,5h
-
-
-
-*/

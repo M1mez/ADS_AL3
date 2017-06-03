@@ -27,11 +27,14 @@ void Manager::getQuery (std::string &start, std::string &end)
 	cout << endl;
 }
 
+//Not tested, not finished
 void Manager::findRoute (std::string &start, std::string &end)
 {
 	std::vector <Vertex* > route;
 	alg->addQuery (m_stations[start], m_stations[end]);
 	route = alg->runQuery ();
+
+	printRoute(route);
 }
 
 void Manager::readFile()

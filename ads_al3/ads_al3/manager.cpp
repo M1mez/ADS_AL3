@@ -18,23 +18,29 @@ Manager::~Manager()
 //TO DO: secure input and validate station names.
 void Manager::getQuery (std::string &start, std::string &end)
 {
-	cout << "Please enter your search query!" << endl;
-	cout << "+-----------------------------+" << endl << endl;
-	cout << "Origin station: ";
-	cin  >> start;
-	cout << endl << "Destination station: ";
-	cin >> end;
-	cout << endl;
+	bool failInput = false;
+	do
+	{
+		cout << "Please enter your search query!" << endl;
+		cout << "+-----------------------------+" << endl << endl;
+		cout << "Origin station: ";
+		cin >> start;
+		cout << endl << "Destination station: ";
+		cin >> end;
+		cout << endl;
+	} while (start == end);
+	
 }
 
 //Not tested, not finished
 void Manager::findRoute (std::string &start, std::string &end)
 {
-	std::vector <Vertex* > route;
+	std::vector <Edge* > route;
 	alg->addQuery (m_stations[start], m_stations[end]);
 	route = alg->runQuery ();
 
 	printRoute(route);
+	alg->reset();
 }
 
 void Manager::readFile()
@@ -47,7 +53,7 @@ void Manager::readFile()
 	int longestStrLength = INITSTRLENGTH, tmpStrLength;
 	int lineID = 0, dist = 0;
 
-	path = "../../ubahn.txt";
+	path = "../../ubahnstrassenbahn.txt";
 
 	ifstream ifs(path.c_str());
 
@@ -114,54 +120,65 @@ void Manager::readFile()
 
 }
 
-void Manager::printRoute(vector<Vertex*> &route)
+void Manager::printRoute(vector<Edge*> &route)
 {
-	int i = 0;
-	int max = route.size();
-	Vertex* prevV = route[i++];
+	bool isAtStartStation = true;
+	int	 currLine = 0;
 
-	for (;i < max; i++)
-	for (auto tempV : route)
+	//Print start station
+	cout << route.front()->m_target->previous->m_target->m_stationName;
+	for (auto tempE : route)
 	{
-		cout.width(30);
-		cout << left << prevV->m_stationName << " -> ";
-		cout.width(30);
-		cout << left << tempV->m_stationName << endl;
-		prevV = tempV;
-	}
-}
-
-void Manager::testOut(bool dir)
-{
-	vector< Vertex* > &stationList = dir ? m_startStations : m_endStations;
-	int lineID = 0, i = 0;
-	int m_edgeSize = 2;
-	Edge* nextE = nullptr;
-	Vertex* nextV = nullptr;
-	Vertex* prevV = nullptr;
-	bool notFirst = true;
-
-	for (auto firstV : stationList)
-	{
-		cout << "Linie " << m_lineNames.at(lineID) << endl << "~~~~~~~~~~~~" << endl;
-		nextV = firstV;
-		while (true)
+		if (isAtStartStation)
 		{
-			nextE = nextV->findNextE(prevV, lineID);	 // find next Edge	
-			prevV = nextV;								 // set previous Vertex to distinguish where we came from
-			if (nextE == nullptr) break;
-			nextV = nextE->m_target;					 // set next Vertex
-			
-			cout.width(m_lineMaxStringLength.at(lineID)); cout << left << prevV->m_stationName << " " << nextE->m_distance << " min ->   ";
-			cout.width(m_lineMaxStringLength.at(lineID)); cout << nextV->m_stationName << endl;
-			
-			if (nextV->m_edges.size() == 1) break;
+			isAtStartStation = false;
 		}
-		prevV = nullptr;
-		lineID++;
-		cout << "\n\n";
+		else
+		{
+			if (currLine != tempE->m_lineId)
+			{
+				cout << endl << endl << "Umsteigen von Linie " << m_lineNames.at(currLine) << " auf Linie " << m_lineNames.at(tempE->m_lineId) << "." << endl << endl;
+				cout << tempE->m_target->previous->m_target->m_stationName;
+			}
+		}
+		cout << " -> " << endl << tempE->m_target->m_stationName;
+		currLine = tempE->m_lineId;
 	}
+
+	cout << endl;
 }
+
+//void Manager::testOut(bool dir)
+//{
+//	vector< Vertex* > &stationList = dir ? m_startStations : m_endStations;
+//	int lineID = 0, i = 0;
+//	int m_edgeSize = 2;
+//	Edge* nextE = nullptr;
+//	Vertex* nextV = nullptr;
+//	Vertex* prevV = nullptr;
+//	bool notFirst = true;
+//
+//	for (auto firstV : stationList)
+//	{
+//		cout << "Linie " << m_lineNames.at(lineID) << endl << "~~~~~~~~~~~~" << endl;
+//		nextV = firstV;
+//		while (true)
+//		{
+//			nextE = nextV->findNextE(prevV, lineID);	 // find next Edge	
+//			prevV = nextV;								 // set previous Vertex to distinguish where we came from
+//			if (nextE == nullptr) break;
+//			nextV = nextE->m_target;					 // set next Vertex
+//			
+//			cout.width(m_lineMaxStringLength.at(lineID)); cout << left << prevV->m_stationName << " " << nextE->m_distance << " min ->   ";
+//			cout.width(m_lineMaxStringLength.at(lineID)); cout << nextV->m_stationName << endl;
+//			
+//			if (nextV->m_edges.size() == 1) break;
+//		}
+//		prevV = nullptr;
+//		lineID++;
+//		cout << "\n\n";
+//	}
+//}
 
 
 Vertex* Manager::newStation(std::string name)

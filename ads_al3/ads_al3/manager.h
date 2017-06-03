@@ -36,7 +36,7 @@ public:
 	//parse input file to Datastructure
 	void readFile ();
 
-	void printRoute (std::vector<Vertex*> &route);
+	void printRoute (std::vector<Edge*> &route);
 
 	//get query from user
 	void getQuery (std::string &start, std::string &end);

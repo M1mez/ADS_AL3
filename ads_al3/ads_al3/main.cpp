@@ -14,7 +14,8 @@ int main (int argc, char *argv[])
 	Manager man;
 	
 	//check command line parameters.
-	if (!validate (argc, argv)) return 0;
+
+	//if (!validate (argc, argv)) return 0;
 
 	cout << "Building Network, this may take a moment..." << endl;
 
@@ -23,7 +24,7 @@ int main (int argc, char *argv[])
 	cout << "Success!" << endl << endl;
 
 
-	man.testOut(1);
+	//man.testOut(1);
 
 	//Get Query from User
 	man.getQuery (startStation, endStation);	// @sebi schöne lösung mit referenzen #notbad
@@ -50,6 +51,7 @@ int main (int argc, char *argv[])
 
 
 */
+	system("pause");
 	cout << endl;
 	return 0;
 }

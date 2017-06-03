@@ -33,7 +33,7 @@ public:
 	std::string m_stationName;
 	std::string m_lineList;
 
-	void changePrevious (Edge* previousEdge);
+	void changePrevious (Vertex* originVertex);
 /*
 	int findBest(Vertex* dest);
 	Edge* findNextE(Vertex* prevV, int line);

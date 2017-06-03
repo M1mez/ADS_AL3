@@ -21,12 +21,15 @@ private:
 	std::list <Vertex* > queue;
 
 	//sets distance to infinity in all stations.
-	void reset (); // Hab ich in div. Methoden verteilt, war redundant
 
-	void checkPathLength(Edge* previousEdge, Vertex* vertexToCheck, int newDistance);
+	void checkPathLength(Vertex* originVertex, Vertex* vertexToCheck, int newDistance);
 
-	std::vector <Vertex* > finish (Vertex* reachedGoal); // noch benötigt?
+	std::vector <Edge* > finish (Vertex* reachedGoal);
 	void addToQueue (Vertex* addMeToQueue);
+
+	//returns complementary edge of given Edge 'previous', for Vertex member previous
+	Edge* turnPrevious(Vertex* originVertex);
+
 public:
 
 	Algorithm  (Manager *man);
@@ -34,7 +37,8 @@ public:
 
 	void addQuery (Vertex* orig, Vertex* dest);
 	//runs Query and returns route.
-	std::vector <Vertex* > runQuery();
+	std::vector <Edge* > runQuery();
+	void reset (); // Hab ich in div. Methoden verteilt, war redundant
 
 };
 

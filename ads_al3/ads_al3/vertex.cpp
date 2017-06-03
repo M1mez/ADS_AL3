@@ -18,8 +18,12 @@ Vertex::~Vertex()
 
 void Vertex::changePrevious(Vertex* originVertex)
 {
+	//cout << endl << m_stationName << " -> CURRENT " << endl;
+	//cout << originVertex->m_stationName << " -> SUCHE " << endl;
 	for (auto iterEdge : m_edges)
 	{
+		//cout << iterEdge->m_target->m_stationName << " -> EDGE " << endl;
+
 		if(iterEdge->m_target == originVertex)
 		{
 		 	this->previous = iterEdge;

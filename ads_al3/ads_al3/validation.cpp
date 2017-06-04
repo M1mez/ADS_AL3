@@ -3,47 +3,67 @@
 #include <fstream>
 #include "validation.h"
 
+using namespace std;
+
 int validate (int &argc, char** argv)
 {
 	//Only 1 argument
 	if (argc != 2)
 	{
-		std::cout << "Error! Invalid number of command line arguments!" << std::endl << std::endl;
+		cout << "Error! Invalid number of command line arguments!" << endl << endl;
 		printHelp ();
 		return 0;
 	}
-	//file existance check
+	//file existence check
 	else if (!fexists (argv[1]))
 	{
-		std::cout << "Error! Inexisting file!" << std::endl << std::endl;
+		cout << "Error! Inexisting file!" << endl << endl;
 		return 0;
 	}
 
 	else
 	{
-		std::cout << "Network File was found successfully!" << std::endl;
+		cout << "Network File was found successfully!" << endl;
 	}
 	return 1;
 }
 
 
-bool fexists (const std::string &filename)
+bool fexists (const string &filename)
 {	
- 	std::ifstream ifile (filename.c_str ());
+ 	ifstream ifile (filename.c_str ());
  	return (bool)ifile;
 }
 
 void printHelp ()
 {
-	std::cout << "------ADS_AL3 HELP PAGE------" << std::endl << std::endl;
-	std::cout << "<1> Syntax:" << std::endl;
-	std::cout << "ads_al3 <networkFile>" << std::endl << std::endl;
-	std::cout << "<2> networkFile:" << std::endl;
-	std::cout << "Path of the file containing the Network data." << std::endl << std::endl;
+	cout << "------ADS_AL3 HELP PAGE------" << endl << endl;
+	cout << "<1> Syntax:" << endl;
+	cout << "ads_al3 <networkFile>" << endl << endl;
+	cout << "<2> networkFile:" << endl;
+	cout << "Path of the file containing the Network data." << endl << endl;
 }
 
-int validateUserQuery(std::string start, std::string end)
+bool validateUserQuery(string start, string end, map< string, Vertex* > &m_stations)
 {
+	bool invalidStations = false;
 
-	return 0;
+
+	if (m_stations.count(start) == 0 || start.empty())
+	{
+		invalidStations = true;
+		cout  << "Origin does NOT exist!"<< endl << endl;
+	}
+	if (m_stations.count(end) == 0 || end.empty())
+	{
+		invalidStations = true;
+		cout  << "Destination does NOT exist!"<< endl << endl;
+	}
+	if (start.compare(end) == 0)
+	{
+		invalidStations = true;
+		cout <<  "Origin and Destination must NOT be the same!" << endl << endl;
+	}
+
+	return invalidStations;
 }

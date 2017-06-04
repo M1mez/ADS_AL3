@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-//#include <map> derzeit hier nicht verwendet
 #include "manager.h"
 #include "validation.h"
 
@@ -22,7 +21,6 @@ int main (int argc, char *argv[])
 	//Build Data Structures
 	man.readFile();
 	cout << "Success!" << endl << endl;
-
 
 	//man.testOut(1);
 

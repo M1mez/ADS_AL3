@@ -27,7 +27,8 @@ void Manager::getQuery (std::string &start, std::string &end)
 		cout << endl << "Destination station: ";
 		cin >> end;
 		cout << endl;
-	} while (validateUserQuery(start, end));
+
+	} while (validateUserQuery(start, end, m_stations));
 	
 }
 

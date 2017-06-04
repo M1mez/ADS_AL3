@@ -10,4 +10,4 @@ bool fexists (const std::string& filename);
 
 void printHelp ();
 
-bool validateUserQuery(std::string start, std::string end, std::map< std::string, Vertex* > &m_stations);
+bool validateUserQuery(std::string start, std::string end, const std::map< std::string, Vertex* > &m_stations);

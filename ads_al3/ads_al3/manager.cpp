@@ -2,6 +2,8 @@
 #include "validation.h"
 #include <fstream>
 #include <sstream>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -27,6 +29,14 @@ void Manager::getQuery (std::string &start, std::string &end)
 		cout << endl << "Destination station: ";
 		cin >> end;
 		cout << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+
+		// Ignore upper-/lowercase
+		transform(start.begin(), start.end(), start.begin(), ::tolower);
+		transform(end.begin(), end.end(), end.begin(), ::tolower);
+		start[0] = toupper(start[0]);
+		end[0] = toupper(end[0]);
 
 	} while (validateUserQuery(start, end, m_stations));
 	
@@ -42,9 +52,9 @@ void Manager::findRoute (std::string &start, std::string &end)
 	alg->reset();
 }
 
-void Manager::readFile()
+void Manager::readFile(std::string path)
 {
-	string tmp, line, name, station, path, devNull;
+	string tmp, line, name, station, devNull;
 	Vertex *prevV = nullptr;
 	Vertex *currV = nullptr;
 	Edge *prevE = nullptr;
@@ -52,7 +62,6 @@ void Manager::readFile()
 	int longestStrLength = INITSTRLENGTH, tmpStrLength;
 	int lineID = 0, dist = 0;
 
-	path = "../../ubahnstrassenbahn.txt";
 
 	ifstream ifs(path.c_str());
 
@@ -61,59 +70,37 @@ void Manager::readFile()
 		stringstream ss(line);
 		getline(ss, name, ':');		 // name of the subway-line
 
-#pragma region read first Station
+	// read first Station
 		getline(ss, devNull, '"');
 		getline(ss, station, '"'); // name der station
 
 		prevV = newStation(station);
 
-		if (prevV->m_crossing) prevV->m_lineList += " ";
-		prevV->m_lineList += name;
-#pragma endregion 
-		
-		m_startStations.push_back(prevV);
+
 		
 		m_lineNames.push_back(name);
 
 		while (getline(ss, devNull, ' ')) // wenn kein blankspace in der aktuellen Zeile verfügbar, Abbruch.
 		{
 
-#pragma region read station and distance
+	// read station and distance
 			ss >> dist;
 			getline(ss, devNull, '"');
 			getline(ss, station, '"'); // name der station
 
 			currV = newStation(station);
 
-			if (currV->m_crossing) currV->m_lineList += " ";
-			currV->m_lineList += name;
-#pragma endregion 
-
-#pragma region create new edge on previous vertex
-			prevE = new Edge();
-			prevE->m_target = currV;
-			prevE->m_distance = dist;
-			prevE->m_lineId = lineID;
+			
+	// create new edge on previous vertex
+			prevE = new Edge(dist, lineID, currV);
 			prevV->m_edges.push_back(prevE);
-#pragma endregion
-
-#pragma region create new edge on current vertex
-			currE = new Edge();
-			currE->m_target = prevV;
-			currE->m_distance = dist;
-			currE->m_lineId = lineID;
+			
+	// create new edge on current vertex
+			currE = new Edge(dist, lineID, prevV);
 			currV->m_edges.push_back(currE);
-#pragma endregion
 
 			prevV = currV; // currV ist im nächsten durchgang der alte vertex prevV
-
-			tmpStrLength = station.length();
-			if (longestStrLength < tmpStrLength) longestStrLength = tmpStrLength;
-
 		}
-		m_lineMaxStringLength.push_back(longestStrLength);
-		longestStrLength = INITSTRLENGTH;
-		m_endStations.push_back(prevV);
 		lineID++;
 	}
 
@@ -151,46 +138,12 @@ void Manager::printRoute(vector<Edge*> &route) const
 	cout << endl;
 }
 
-//void Manager::testOut(bool dir)
-//{
-//	vector< Vertex* > &stationList = dir ? m_startStations : m_endStations;
-//	int lineID = 0, i = 0;
-//	int m_edgeSize = 2;
-//	Edge* nextE = nullptr;
-//	Vertex* nextV = nullptr;
-//	Vertex* prevV = nullptr;
-//	bool notFirst = true;
-//
-//	for (auto firstV : stationList)
-//	{
-//		cout << "Linie " << m_lineNames.at(lineID) << endl << "~~~~~~~~~~~~" << endl;
-//		nextV = firstV;
-//		while (true)
-//		{
-//			nextE = nextV->findNextE(prevV, lineID);	 // find next Edge	
-//			prevV = nextV;								 // set previous Vertex to distinguish where we came from
-//			if (nextE == nullptr) break;
-//			nextV = nextE->m_target;					 // set next Vertex
-//			
-//			cout.width(m_lineMaxStringLength.at(lineID)); cout << left << prevV->m_stationName << " " << nextE->m_distance << " min ->   ";
-//			cout.width(m_lineMaxStringLength.at(lineID)); cout << nextV->m_stationName << endl;
-//			
-//			if (nextV->m_edges.size() == 1) break;
-//		}
-//		prevV = nullptr;
-//		lineID++;
-//		cout << "\n\n";
-//	}
-//}
-
-
 Vertex* Manager::newStation(std::string name)
 {
 	Vertex* v;
 	if (m_stations.count(name))
 	{
 		v = m_stations[name];
-		v->m_crossing = true;
 	}
 	else
 	{

@@ -44,7 +44,7 @@ void printHelp ()
 	cout << "Path of the file containing the Network data." << endl << endl;
 }
 
-bool validateUserQuery(string start, string end, map< string, Vertex* > &m_stations)
+bool validateUserQuery(string start, string end, const map< string, Vertex* > &m_stations)
 {
 	bool invalidStations = false;
 

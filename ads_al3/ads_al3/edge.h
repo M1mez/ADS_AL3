@@ -8,7 +8,6 @@ class Vertex;
 
 struct Edge
 {
-	Edge();
 	Edge(int distance, int lineId, Vertex* target);
 	~Edge();
 

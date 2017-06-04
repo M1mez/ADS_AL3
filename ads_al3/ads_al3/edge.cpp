@@ -1,11 +1,5 @@
 #include "edge.h"
 
-
-
-Edge::Edge()
-{
-}
-
 Edge::Edge(int distance, int lineId, Vertex* target)
 {
 	m_distance = distance;
@@ -13,9 +7,9 @@ Edge::Edge(int distance, int lineId, Vertex* target)
 	m_target   = target;
 }
 
-
 Edge::~Edge()
 {
+	if (m_target) delete m_target;
 }
 
 

@@ -7,25 +7,26 @@ using namespace std;
 
 int main (int argc, char *argv[])
 {
-	cout << endl << "Starting ADS_AL3..." << endl;
-
 	string startStation, endStation;
 	Manager man;
-	
-	//check command line parameters.
 
-	//if (!validate (argc, argv)) return 0;
+	cout << endl << "Starting ADS_AL3..." << endl;
+
+	//check command line parameters.
+	if (!validate(argc, argv))
+	{
+		cout << endl;
+		return 0;
+	}
 
 	cout << "Building Network, this may take a moment..." << endl;
 
 	//Build Data Structures
-	man.readFile();
+	man.readFile((string)argv[1]);
 	cout << "Success!" << endl << endl;
 
-	//man.testOut(1);
-
 	//Get Query from User
-	man.getQuery (startStation, endStation);	// @sebi schöne lösung mit referenzen #notbad
+	man.getQuery (startStation, endStation);
 
 	//Find route
 	try
@@ -37,19 +38,20 @@ int main (int argc, char *argv[])
 		cout << e.what() << endl;
 		return 0;
 	}
-/*
-	if (argc > 1)
+	man.getQuery(startStation, endStation);
+
+	//Find route
+	try
 	{
-		startStation = argv[1];
-		endStation = argv[2];
-		cout << endl << "From " << startStation << " to " << endStation << ":" << endl << endl;
+		man.findRoute(startStation, endStation);
 	}
-	else man.testOut(0);
+	catch (exception &e)
+	{
+		cout << e.what() << endl;
+		return 0;
+	}
 
-
-
-*/
-	system("pause");
 	cout << endl;
+	system("pause");
 	return 0;
 }

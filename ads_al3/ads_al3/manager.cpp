@@ -39,13 +39,13 @@ void Manager::getQuery (std::string &start, std::string &end)
 		cout << endl;
 
 		// Ignore upper-/lowercase
-		for (int i = 0 ; i < start.length(); i++)
+		for (int i = 0 ; i < (int) start.length(); i++)
 		{
 			if (isspace(start[i - 1])) start[i] = toupper(start[i]);
 			else start[i] = tolower(start[i]);
 		}
 
-		for (int i = 0 ; i < end.length(); i++)
+		for (int i = 0 ; i < (int) end.length(); i++)
 		{
 			if (isspace(end[i - 1])) end[i] = toupper(end[i]);
 			else end[i] = tolower(end[i]);
@@ -75,7 +75,7 @@ void Manager::readFile(std::string path)
 	Vertex *currV = nullptr;
 	Edge *prevE = nullptr;
 	Edge *currE = nullptr;
-	int longestStrLength = INITSTRLENGTH, tmpStrLength;
+	int longestStrLength = INITSTRLENGTH;
 	int lineID = 0, dist = 0;
 
 
@@ -141,7 +141,7 @@ void Manager::printRoute(vector<Edge*> &route) const
 	for (auto tempE : route)
 	{
 		totalPathLength += tempE->m_distance;
-		if(( tempE->m_target->m_stationName.length() ) > longestStationName)
+		if( (int) tempE->m_target->m_stationName.length() > longestStationName)
 		{
 			longestStationName = ( tempE->m_target->m_stationName.length() );
 		}

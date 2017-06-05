@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
 		} 
 	} 
 	
-	man.deleteDatastructure();
+	//man.deleteDatastructure();
 	cout << endl << "Travel safely!" << endl << endl;
 	return 0;
 }

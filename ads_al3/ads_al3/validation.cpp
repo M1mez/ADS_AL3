@@ -8,16 +8,11 @@ using namespace std;
 int validate (int &argc, char** argv)
 {
 	//Only 1 argument
-	if (argc != 2)
-	{
-		cout << "Error! Invalid number of command line arguments!" << endl << endl;
-		printHelp ();
-		return 0;
-	}
 	//file existence check
-	else if (!fexists (argv[1]))
+	if (!fexists (argv[1]))
 	{
-		cout << "Error! Inexisting file!" << endl << endl;
+		cout << "Error! Inexisting file or invalid command!" << endl;
+		printHelp();
 		return 0;
 	}
 

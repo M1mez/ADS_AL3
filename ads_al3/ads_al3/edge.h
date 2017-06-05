@@ -6,8 +6,9 @@
 
 class Vertex;
 
-struct Edge
+class Edge
 {
+public:
 	Edge(int distance, int lineId, Vertex* target);
 	~Edge();
 

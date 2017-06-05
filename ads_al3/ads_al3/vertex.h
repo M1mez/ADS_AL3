@@ -4,7 +4,7 @@
 #include <string>
 #include "edge.h"
 
-struct Edge;
+class Edge;
 
 class Vertex
 {

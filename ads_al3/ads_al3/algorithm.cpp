@@ -34,8 +34,19 @@ std::vector <Edge* > Algorithm::runQuery (Vertex* orig, Vertex* dest)
 
 	while(queue.front() != this->destination)
 	{
+
 		//select currently shortest path to be inspected, return route, if Goal is reached.
-		currInspected = queue.front();
+
+		//if empty, there is no connection between origin and destination, so an empty path is returned.
+		//Check for this before starting to print.
+		if(queue.empty())
+		{
+			return shortestPath;
+		}
+		else
+		{
+			currInspected = queue.front();
+		}	
 
 		//look at all connections, check if Path is shorter and change Vertex distance and previous, if so.
 		for (auto i : currInspected->m_edges)

@@ -2,6 +2,8 @@
 #include "validation.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <map>
 #include <string>
@@ -122,6 +124,30 @@ void Manager::printRoute(vector<Edge*> &route) const
 {
 	bool isAtStartStation = true;
 	int	 currLine = 0;
+	int longestStationName = 0;
+	int totalPathLength = 0;
+
+	//if route is empty, no path was found.
+	if(route.empty())
+	{
+		cout << "Error! No connection between the stations was found!" << endl;
+		return;
+	}
+
+	//length of Startstation name.
+	longestStationName = route.front()->m_target->previous->m_target->m_stationName.length();
+
+	//get longestStationName and total pathlength.
+	for (auto tempE : route)
+	{
+		totalPathLength += tempE->m_distance;
+		if(( tempE->m_target->m_stationName.length() ) > longestStationName)
+		{
+			longestStationName = ( tempE->m_target->m_stationName.length() );
+		}
+	}
+	//Buffer
+	longestStationName += 5;
 
 	for (auto tempE : route)
 	{
@@ -131,8 +157,9 @@ void Manager::printRoute(vector<Edge*> &route) const
 			isAtStartStation = false;
 
 			//Print start station
+
+			cout << "Take Line " << m_lineNames.at(tempE->m_lineId) << endl << endl;
 			cout << route.front()->m_target->previous->m_target->m_stationName;
-			cout << ". Take Line " << m_lineNames.at(tempE->m_lineId) << " ";
 		}
 		else
 		{
@@ -142,12 +169,13 @@ void Manager::printRoute(vector<Edge*> &route) const
 				cout << tempE->m_target->previous->m_target->m_stationName;
 			}
 		}
-		//Output of next station on the route.
-		cout << " -> " << endl << tempE->m_target->m_stationName;
+		//Output of next station on the route. length of longest name minus length of current station name as buffer.
+		cout << setw(longestStationName - tempE->m_target->previous->m_target->m_stationName.length());
+		cout << " -> " << tempE->m_distance << " min" << endl << tempE->m_target->m_stationName;
 		currLine = tempE->m_lineId;
 	}
 
-	cout << endl;
+	cout << endl << endl << "Total travel time: " << totalPathLength << " minutes." << endl;
 }
 
 Vertex* Manager::newStation(std::string name)

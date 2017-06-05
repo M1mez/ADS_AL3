@@ -75,7 +75,6 @@ void Manager::readFile(std::string path)
 	Vertex *currV = nullptr;
 	Edge *prevE = nullptr;
 	Edge *currE = nullptr;
-	int longestStrLength = INITSTRLENGTH;
 	int lineID = 0, dist = 0;
 
 

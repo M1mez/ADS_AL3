@@ -7,18 +7,25 @@ using namespace std;
 
 int validate (int &argc, char** argv)
 {
+	if (argc < 2)
+	{
+		cout << endl << "Error! Missing comand line parameter!" << endl;
+		printHelp();
+		return 0;
+	}
+
 	//Only 1 argument
 	//file existence check
-	if (!fexists (argv[1]))
+	else if (!fexists (argv[1]))
 	{
-		cout << "Error! Inexisting file or invalid command!" << endl;
+		cout << endl << "Error! Inexisting file or invalid command!" << endl;
 		printHelp();
 		return 0;
 	}
 
 	else
 	{
-		cout << "Network File was found successfully!" << endl;
+		cout << endl << "Network File was found successfully!" << endl;
 	}
 	return 1;
 }
@@ -32,7 +39,8 @@ bool fexists (const string &filename)
 
 void printHelp ()
 {
-	cout << "------ADS_AL3 HELP PAGE------" << endl << endl;
+	cout << endl;
+	cout << "+------ADS_AL3 HELP PAGE------+" << endl << endl;
 	cout << "<1> Syntax:" << endl;
 	cout << "ads_al3 <networkFile>" << endl << endl;
 	cout << "<2> networkFile:" << endl;

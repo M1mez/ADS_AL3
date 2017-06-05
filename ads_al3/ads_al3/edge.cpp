@@ -9,7 +9,6 @@ Edge::Edge(int distance, int lineId, Vertex* target)
 
 Edge::~Edge()
 {
-	if (m_target) delete m_target;
 }
 
 

@@ -34,6 +34,8 @@ public:
 	Manager();
 	~Manager();
 
+	void deleteDatastructure();
+
 	//parse input file to Datastructure
 	void readFile (std::string path);
 

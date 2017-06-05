@@ -23,6 +23,9 @@ void Algorithm::initializeQuery (Vertex* orig, Vertex* dest)
 
 std::vector <Edge* > Algorithm::runQuery (Vertex* orig, Vertex* dest)
 {
+	//route will be saved here
+	std::vector <Edge* > shortestPath;
+
 	//initialize the query.
 	this->initializeQuery (orig, dest);
 
@@ -33,7 +36,7 @@ std::vector <Edge* > Algorithm::runQuery (Vertex* orig, Vertex* dest)
 	{
 		//select currently shortest path to be inspected, return route, if Goal is reached.
 		currInspected = queue.front();
-	
+
 		//look at all connections, check if Path is shorter and change Vertex distance and previous, if so.
 		for (auto i : currInspected->m_edges)
 		{
@@ -45,11 +48,17 @@ std::vector <Edge* > Algorithm::runQuery (Vertex* orig, Vertex* dest)
 		queue.pop_front();
 
 	}
-	return finish (queue.front());
+	shortestPath = finish (queue.front());
+	queue.clear();
+	visitedStations.clear();
+	return shortestPath;
 }
 
 void Algorithm::reset ()
 {
+	//delete dummy Edge, created in Algorithm::initializeQuery.
+	delete origin->previous;
+
 	for (auto i = manager->m_stations.begin(); i != manager->m_stations.end(); i++)
 	{
 		i->second->pathLength = INT_MAX;

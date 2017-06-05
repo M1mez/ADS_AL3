@@ -39,13 +39,13 @@ void Manager::getQuery (std::string &start, std::string &end)
 		cout << endl;
 
 		// Ignore upper-/lowercase
-		for (int i = 0 ; i < (int) start.length(); i++)
+		for (int i = 1 ; i < (int) start.length(); i++)
 		{
 			if (isspace(start[i - 1])) start[i] = toupper(start[i]);
 			else start[i] = tolower(start[i]);
 		}
 
-		for (int i = 0 ; i < (int) end.length(); i++)
+		for (int i = 1 ; i < (int) end.length(); i++)
 		{
 			if (isspace(end[i - 1])) end[i] = toupper(end[i]);
 			else end[i] = tolower(end[i]);
